@@ -254,6 +254,30 @@
     }
   }
 
+  // respond to popup or other extension UI requests
+  chrome.runtime && chrome.runtime.onMessage && chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (!msg || !msg.type) return;
+    if (msg.type === 'recon_runAnalysis') {
+      const pageData = collectPageData();
+      if (!pageData || !window.ReconAI) return sendResponse({ error: 'no_data' });
+
+      window.ReconAI.analyzePage(pageData).then((result) => {
+        renderOverlay(result);
+        sendResponse({ ok: true });
+      }).catch((err) => {
+        sendResponse({ error: String(err) });
+      });
+
+      return true; // keep channel open for async response
+    }
+
+    if (msg.type === 'recon_closeOverlay') {
+      const existing = document.getElementById(OVERLAY_ID);
+      if (existing) existing.remove();
+      sendResponse({ ok: true });
+    }
+  });
+
   let lastURL = location.href;
   new MutationObserver(() => {
     if (location.href !== lastURL) {
