@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Recon – Upwork Client Intel",
+  "version": "1.0.0",
+  "description": "Uses free AI providers to surface client context from Upwork job pages.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://www.upwork.com/*",
+    "https://gen.pollinations.ai/*",
+    "https://api.groq.com/*",
+    "https://api.mistral.ai/*",
+    "https://integrate.api.nvidia.com/*",
+    "https://openrouter.ai/*"
+  ],
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["https://www.upwork.com/jobs/*"],
+      "js": ["ai.js", "content.js"],
+      "css": ["overlay.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

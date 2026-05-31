@@ -1,0 +1,275 @@
+/* ── Recon HUD Overlay ─────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500&display=swap');
+
+#recon-hud {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147483647;
+  width: 300px;
+  max-height: 520px;
+  overflow: hidden;
+
+  background: #0d0d0f;
+  border: 1px solid #2a2a35;
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(99, 102, 241, 0.08);
+
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #e2e2e8;
+
+  animation: recon-enter 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: bottom right;
+}
+
+@keyframes recon-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+
+#recon-hud .recon-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #111118;
+  border-bottom: 1px solid #1e1e28;
+  cursor: grab;
+  user-select: none;
+}
+
+#recon-hud[data-dragging="true"] .recon-header {
+  cursor: grabbing;
+}
+
+#recon-hud .recon-logo {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #818cf8;
+  text-transform: uppercase;
+}
+
+#recon-hud .recon-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#recon-hud .recon-provider {
+  font-size: 9px;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+#recon-hud .recon-sentiment {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #94949e;
+}
+
+#recon-hud .recon-close {
+  background: none;
+  border: none;
+  color: #4a4a5a;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+#recon-hud .recon-close:hover {
+  color: #e2e2e8;
+}
+
+#recon-hud .recon-settings {
+  background: none;
+  border: none;
+  color: #4a4a5a;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+#recon-hud .recon-settings:hover {
+  color: #e2e2e8;
+}
+
+/* ── Body ───────────────────────────────────────────────────────────────────── */
+
+#recon-hud .recon-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: 440px;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a35 transparent;
+}
+
+#recon-hud .recon-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+#recon-hud .recon-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#recon-hud .recon-body::-webkit-scrollbar-thumb {
+  background: #2a2a35;
+  border-radius: 2px;
+}
+
+/* ── Sections ───────────────────────────────────────────────────────────────── */
+
+#recon-hud .recon-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#recon-hud .recon-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #4a4a60;
+  text-transform: uppercase;
+}
+
+/* ── Chips ──────────────────────────────────────────────────────────────────── */
+
+#recon-hud .recon-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+#recon-hud .recon-chip {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+#recon-hud .recon-chip--name {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+}
+
+#recon-hud .recon-chip--tech {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #6ee7b7;
+}
+
+/* ── Snippets ───────────────────────────────────────────────────────────────── */
+
+#recon-hud .recon-snippets {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#recon-hud .recon-snippet {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.55;
+  color: #7a7a8c;
+  font-family: 'Inter', sans-serif;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid #2a2a3a;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ── CTA Button ─────────────────────────────────────────────────────────────── */
+
+#recon-hud .recon-cta {
+  width: 100%;
+  padding: 9px 12px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+#recon-hud .recon-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+#recon-hud .recon-cta:active {
+  transform: translateY(0);
+}
+
+/* ── Empty state ────────────────────────────────────────────────────────────── */
+
+#recon-hud .recon-empty {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #4a4a60;
+  line-height: 1.6;
+  text-align: center;
+  padding: 12px 0 4px;
+}
+
+#recon-hud .recon-summary {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+#recon-hud .recon-footnote {
+  font-size: 9px;
+  color: #4a4a60;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+
+#recon-hud .recon-sentiment--strong {
+  color: #34d399;
+}
+
+#recon-hud .recon-sentiment--mixed {
+  color: #fbbf24;
+}
+
+#recon-hud .recon-sentiment--neutral {
+  color: #9ca3af;
+}
+
+#recon-hud .recon-sentiment--flags {
+  color: #f87171;
+}

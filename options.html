@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recon AI Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="panel">
+        <div class="eyebrow">Recon</div>
+        <h1>AI Settings</h1>
+        <p class="lede">Configure free providers, fallback order, and rate-limit guardrails.</p>
+
+        <form id="settings-form" class="form">
+          <label>
+            Provider order
+            <input id="providerOrder" type="text" placeholder="pollinations, groq, nvidia, openrouter, mistral" />
+          </label>
+
+          <label>
+            Pollinations model
+            <input id="pollinationsModel" type="text" placeholder="openai" />
+          </label>
+
+          <label>
+            Groq API key
+            <input id="groqApiKey" type="password" placeholder="Optional Groq key" />
+          </label>
+
+          <label>
+            Groq model
+            <input id="groqModel" type="text" placeholder="llama-3.1-8b-instant" />
+          </label>
+
+          <label>
+            NVIDIA API key
+            <input id="nvidiaApiKey" type="password" placeholder="Optional NVIDIA API key" />
+          </label>
+
+          <label>
+            NVIDIA model
+            <input id="nvidiaModel" type="text" placeholder="nvidia/nemotron-3-nano-30b-a3b" />
+          </label>
+
+          <label>
+            OpenRouter API key
+            <input id="openrouterApiKey" type="password" placeholder="Optional free-tier key" />
+          </label>
+
+          <label>
+            OpenRouter model
+            <input id="openrouterModel" type="text" placeholder="openrouter/free" />
+          </label>
+
+          <label>
+            Mistral API key
+            <input id="mistralApiKey" type="password" placeholder="Optional Mistral key" />
+          </label>
+
+          <label>
+            Mistral model
+            <input id="mistralModel" type="text" placeholder="mistral-small-latest" />
+          </label>
+
+          <label>
+            Timeout ms
+            <input id="timeoutMs" type="number" min="5000" step="1000" />
+          </label>
+
+          <label>
+            Max input chars
+            <input id="maxInputChars" type="number" min="1000" step="500" />
+          </label>
+
+          <div class="actions">
+            <button type="submit">Save settings</button>
+            <button type="button" id="testProvider">Test primary provider</button>
+          </div>
+        </form>
+
+        <pre id="status" class="status">Loading...</pre>
+      </section>
+    </main>
+    <script src="ai.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>
